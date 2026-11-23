@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - FitSquad Hub</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #101827, #1e293b);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-card {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .login-card h2 {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .form-label {
+            color: white;
+        }
+
+        .btn-login {
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
+            border: none;
+        }
+
+        .btn-login:hover {
+            background: #0ea5e9;
+        }
+
+        .register-link {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+    <h2 class="text-center mb-3">FitSquad Hub</h2>
+
+    <p class="text-center text-light mb-4">
+        Sign in to continue your fitness journey
+    </p>
+
+    <!-- Invalid login message -->
+    <div th:if="${param.error}" class="alert alert-danger">
+        Invalid username or password.
+    </div>
+
+    <!-- Logout success message -->
+    <div th:if="${param.logout}" class="alert alert-success">
+        You have been signed out safely.
+    </div>
+
+    <!-- Registration success message -->
+    <div th:if="${param.registered}" class="alert alert-success">
+        Registration successful! Please log in.
+    </div>
+
+    <!-- Login Form -->
+    <form th:action="@{/login}" method="post">
+
+        <div class="mb-3">
+            <label for="username" class="form-label">
+                Username
+            </label>
+
+            <input type="text"
+                   class="form-control"
+                   id="username"
+                   name="username"
+                   placeholder="Enter your username"
+                   autocomplete="username"
+                   required>
+        </div>
+
+        <div class="mb-4">
+            <label for="password" class="form-label">
+                Password
+            </label>
+
+            <input type="password"
+                   class="form-control"
+                   id="password"
+                   name="password"
+                   placeholder="Enter your password"
+                   autocomplete="current-password"
+                   required>
+        </div>
+
+        <button type="submit"
+                class="btn btn-login w-100 py-2">
+            Login
+        </button>
+
+    </form>
+
+    <p class="text-center text-light mt-4">
+        Don't have an account?
+        <a th:href="@{/register}" class="register-link">
+            Register here
+        </a>
+    </p>
+
+</div>
+
+</body>
+</html>
