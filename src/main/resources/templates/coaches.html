@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,8 +39,8 @@
                 </p>
             </div>
             <div>
-                <a th:href="@{/create-coach}" class="btn btn-join rounded-pill px-4 py-2">
-                    <i class="bi bi-person-plus-fill me-1"></i> Register New Coach
+                <a sec:authorize="hasRole('ADMIN')"th:href="@{/create-coach}" class="btn btn-join rounded-pill px-4 py-2">
+                    <i class="bi bi-person-plus-fill me-1"></i>Register New Coach
                 </a>
             </div>
         </div>

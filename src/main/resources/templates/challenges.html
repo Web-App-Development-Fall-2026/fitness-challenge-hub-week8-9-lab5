@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,8 +42,11 @@
                         Push your boundaries, log workout progress, and earn squad prestige. Explore our community-driven fitness challenges crafted by certified coaches.
                     </p>
                     <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start mb-3">
-                        <a th:href="@{/create-challenge}" class="btn btn-join px-4 py-2 rounded-pill">
-                            <i class="bi bi-plus-circle-fill me-1"></i> Create Challenge
+                        <a sec:authorize="hasAnyRole('COACH', 'ADMIN')" 
+                           th:href="@{/create-challenge}" 
+                           class="btn btn-join px-4 py-2 rounded-pill">
+                            <i class="bi bi-plus-circle-fill me-1"></i> 
+                            Create Challenge
                         </a>
                         <a th:href="@{/log-workout}" class="btn btn-outline-light px-4 py-2 rounded-pill">
                             <i class="bi bi-fire text-warning me-1"></i> Log Workout
