@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | FitSquad Hub</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body class="bg-dark text-light">
+
+    <main class="container min-vh-100 d-flex
+                 justify-content-center align-items-center">
+
+        <div class="card bg-secondary text-light shadow-lg border-0"
+             style="max-width: 450px; width: 100%;">
+
+            <div class="card-body p-4">
+
+                <h1 class="text-center fw-bold mb-2">
+                    FitSquad Hub
+                </h1>
+
+                <p class="text-center mb-4">
+                    Sign in to your account
+                </p>
+
+                <!-- Invalid credentials -->
+                <div class="alert alert-danger"
+                     th:if="${param.error}">
+                    Invalid username or password.
+                </div>
+
+                <!-- Successful logout -->
+                <div class="alert alert-success"
+                     th:if="${param.logout}">
+                    You have been signed out safely.
+                </div>
+
+                <form th:action="@{/login}" method="post">
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            Username
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="username"
+                               name="username"
+                               required
+                               autofocus>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label">
+                            Password
+                        </label>
+
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               name="password"
+                               required>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-info w-100 fw-bold">
+                        Sign In
+                    </button>
+
+                </form>
+
+                <hr class="my-4">
+
+                <p class="text-center mb-0">
+                    Don't have an account?
+                    <a th:href="@{/register}"
+                       class="text-info fw-bold">
+                        Register here
+                    </a>
+                </p>
+
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

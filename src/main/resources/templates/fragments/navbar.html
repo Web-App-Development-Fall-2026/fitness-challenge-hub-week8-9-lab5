@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
     <!-- Reusable Navbar Fragment -->
@@ -25,7 +26,7 @@
                             <i class="bi bi-grid-fill me-1 text-primary"></i> Challenges
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyRole('COACH', 'ADMIN')">
                         <a class="nav-link text-light px-3 rounded-pill" th:href="@{/create-challenge}">
                             <i class="bi bi-plus-circle-fill me-1 text-info"></i> Create Challenge
                         </a>
@@ -45,6 +46,18 @@
                             <i class="bi bi-person-badge-fill me-1 text-danger"></i> Coaches
                         </a>
                     </li>
+					<li class="nav-item" sec:authorize="hasRole('ADMIN')">
+					    <a class="nav-link text-light px-3 rounded-pill" th:href="@{/create-coach}">
+					        Register Coach
+					    </a>
+					</li>
+					<li class="nav-item" sec:authorize="hasRole('ADMIN')">
+					    <a class="nav-link text-light px-3 rounded-pill" th:href="@{/h2-console}">
+					        H2 Console
+					    </a>
+
+					</li>
+					
                 </ul>
 
                 <div class="d-flex align-items-center gap-2 mt-2 mt-lg-0">
@@ -55,6 +68,28 @@
                         <i class="bi bi-fire me-1"></i> Log Workout
                     </a>
                 </div>
+
+				<div class="d-flex align-items-center gap-3 mt-2 mt-lg-0 ms-lg-3"
+				     sec:authorize="isAuthenticated()">
+
+				    <span class="text-light small">
+				        <i class="bi bi-person-circle me-1 text-info"></i>
+				        <span sec:authentication="name"></span>
+				    </span>
+
+				    <form th:action="@{/logout}"
+				          method="post"
+				          class="m-0">
+
+				        <button type="submit"
+				                class="btn btn-sm btn-outline-light rounded-pill px-3">
+				            <i class="bi bi-box-arrow-right me-1"></i>
+				            Logout
+				        </button>
+
+				    </form>
+				</div>
+
             </div>
         </div>
     </nav>
